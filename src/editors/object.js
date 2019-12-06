@@ -1194,7 +1194,9 @@ export class ObjectEditor extends AbstractEditor {
         this.addObjectProperty(i)
         editor.setValue(value[i], initial)
         /* Otherwise, remove value unless this is the initial set or it's required */
-      } else if (!initial && !this.isRequiredObject(editor)) {
+      } else if (!initial && !this.isRequiredObject(editor) &&
+        !(this.options.disable_properties || (this.options.disable_properties !== false && this.jsoneditor.options.disable_properties))
+      ) {
         this.removeObjectProperty(i)
         /* Otherwise, set the value to the default */
       } else {
