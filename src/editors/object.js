@@ -1193,6 +1193,10 @@ export class ObjectEditor extends AbstractEditor {
       if (typeof value[i] !== 'undefined') {
         this.addObjectProperty(i)
         editor.setValue(value[i], initial)
+        if (!this.isRequiredObject(editor)) {
+          editor.optInCheckbox.checked = true
+          editor.activate()
+        }
         /* Otherwise, remove value unless this is the initial set or it's required */
       } else if (!initial && !this.isRequiredObject(editor) &&
         !(this.options.disable_properties || (this.options.disable_properties !== false && this.jsoneditor.options.disable_properties))
